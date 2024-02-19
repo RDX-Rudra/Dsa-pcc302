@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <limits.h>
-#define MaxSize 10
 
 typedef struct ArrayStack
 {
@@ -17,7 +16,7 @@ struct ArrayStack *createStack()
     {
         return NULL;
     }
-    S->capacity = MaxSize;
+    S->capacity = 1;
     S->top = -1;
     S->array = malloc(S->capacity * sizeof(int));
     if (!S->array)
@@ -35,6 +34,11 @@ int IsFullStack(SA *S)
     return (S->top == S->capacity - 1);
 }
 
+void DoubleStack(SA *S){
+    S->capacity *=2;
+    S->array = realloc(S->array, S->capacity *sizeof(int));
+}
+
 void push(SA *S)
 {
     int data;
@@ -42,10 +46,9 @@ void push(SA *S)
     scanf("%d", &data);
     if (IsFullStack(S))
     {
-        printf("Stack Overflow");
+        DoubleStack(S);
     }
-    else
-        S->array[++S->top] = data;
+    S->array[++S->top] = data;
 }
 
 int pop(SA *S)
@@ -65,7 +68,7 @@ void display(SA *S)
     if (IsEmpty(S))
         printf("\nStack is Empty\n");
     else{
-        for (int i = 0; i <= S->top; i++){
+        for (int i = S->top; i >= 0; i--){
             printf("%d\n", S->array[i]);
         }
     }
