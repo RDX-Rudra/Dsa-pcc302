@@ -39,11 +39,8 @@ void DoubleStack(SA *S){
     S->array = realloc(S->array, S->capacity *sizeof(int));
 }
 
-void push(SA *S)
+void push(SA *S, int data)
 {
-    int data;
-    printf("enter the value: ");
-    scanf("%d", &data);
     if (IsFullStack(S))
     {
         DoubleStack(S);
@@ -97,7 +94,10 @@ void main()
         switch (ch)
         {
         case 1:
-            push(S);
+            int data;
+            printf("enter the value: ");
+            scanf("%d", &data);
+            push(S, data);
             break;
         case 2:
             a = pop(S);
