@@ -16,35 +16,32 @@ int match(char ch1, char ch2) {
 
 int main() {
     SA *S = createStack();
-    int n;
-    char ch;
-    printf("Enter the number of terms: ");
-    scanf("%d", &n);
+    int i;
+    char ch[100];
+    printf("Enter the expression: ");
+    scanf("%s", ch);
     bool v = true;
-    getchar(); // Consume the newline character left in the input buffer
-
-    while (v && n > 0) {
-        scanf("%c", &ch);
-        if (isOpeningS(ch)){
-            push(S, ch);
+    for(i=0; ch[i] != '\0'; i++) {
+        if (isOpeningS(ch[i])){
+            push(S, ch[i]);
         }
-        else if (isClosingS(ch)) {
+        else if (isClosingS(ch[i])) {
             char ch1 = pop(S);
-            if (!match(ch1, ch)) {
-                v = false;
+            if (!match(ch1, ch[i])) {
+                v=false;
+                printf("False\n");
                 break;
             }
             else
-                n--;
+                continue;
         }
         else 
-            n--;
+          continue;  
     }
-
-    if (v && IsEmpty(S))
+    if(v==true && IsEmpty(S)){
         printf("TRUE\n");
+    }
     else
-        printf("FALSE\n");
-
+        printf("False\n");
     return 0;
 }

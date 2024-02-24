@@ -9,7 +9,7 @@ typedef struct ArrayStack
 {
     int top;
     int capacity;
-    int *array;
+    char *array;
 } SA;
 
 SA *createStack()
@@ -21,7 +21,7 @@ SA *createStack()
     }
     S->capacity = 1;
     S->top = -1;
-    S->array = (int *)malloc(S->capacity * sizeof(int));
+    S->array = (char *)malloc(S->capacity * sizeof(char));
     if (!S->array)
         return NULL;
     return S;
@@ -40,10 +40,10 @@ int IsFullStack(SA *S)
 void DoubleStack(SA *S)
 {
     S->capacity *= 2;
-    S->array = (int *)realloc(S->array, S->capacity * sizeof(int));
+    S->array = (char *)realloc(S->array, S->capacity * sizeof(char));
 }
 
-void push(SA *S, int data)
+void push(SA *S, char data)
 {
     if (IsFullStack(S))
     {
