@@ -7,8 +7,24 @@ void swap(int *p1, int* p2){
 }
 
 int partition(int arr[], int low, int high){
-    
+    int pivot = arr[low];
+    int i = low + 1; // Initialize i to the next index after pivot
+    int j = high;
+
+    while(i <= j) { // Change condition to <=
+        while(arr[i] < pivot && i <= high) // Change condition to <
+            i++;
+        while(arr[j] > pivot && j >= low) // Change condition to >
+            j--;
+        if(i < j)
+            swap(&arr[i], &arr[j]);
+        else
+            break; // Break the loop when i and j cross each other
+    }
+    swap(&arr[j], &arr[low]);
+    return j;
 }
+
 
 void quickSort(int arr[], int low, int high){
     if(high>low){
