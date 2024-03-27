@@ -1,8 +1,8 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include <limits.h>
-#include<queue\QueueDynamic.h>
-#include<Stack\StackDynamic.h>
+#include "../../Stack/StackDynamic.h" // Adjusted the include path for StackDynamic.h
+#include "../../queue/QueueDynamic.h" // Changed the include path
 
 void ReverseQueue(Queue* Q){
     SA* S = createStack();
@@ -12,18 +12,18 @@ void ReverseQueue(Queue* Q){
     {
         enQueue(Q, pop(S));
     }
-    
 }
 
 void main(){
     Queue* Q = createQueue();
-    deQueue(45);
-    deQueue(56);
-    deQueue(12);
-    deQueue(23);
-    deQueue(20);
-    deQueue(89);
+    enQueue(Q, 56);
+    enQueue(Q, 45);
+    enQueue(Q, 12);
+    enQueue(Q, 23);
+    enQueue(Q, 20);
+    enQueue(Q, 89);
     displayQueue(Q);
     ReverseQueue(Q);
+    printf("After reverse :-\n");
     displayQueue(Q);
 }
