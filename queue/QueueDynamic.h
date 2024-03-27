@@ -1,3 +1,6 @@
+#ifndef QUEUEDYNAMIC_H
+#define QUEUEDYNAMIC_H
+
 #include<stdio.h>
 #include<stdlib.h>
 #include <limits.h>
@@ -19,11 +22,11 @@ Queue* createQueue(){
     return Q;
 }
 
-int isEmpty(Queue* Q){
+int isEmptyQueue(Queue* Q){
     return (Q->front == -1);
 }
 
-int isFull(Queue* Q){
+int isFullQueue(Queue* Q){
     return ((Q->rear+1)%Q->capacity == Q->front);
 }
 
@@ -44,7 +47,7 @@ void resizeQueue(Queue* Q){
 }
 
 void enQueue(Queue* Q, int data){
-    if(isFull(Q))
+    if(isFullQueue(Q))
         resizeQueue(Q);
     Q->rear = (Q->rear +1)%Q->capacity;
     Q->array[Q->rear]= data;
@@ -54,7 +57,7 @@ void enQueue(Queue* Q, int data){
 
 int deQueue(Queue* Q){
     int data = 0;
-    if(isEmpty(Q)){
+    if(isEmptyQueue(Q)){
         printf("Queue underflow");
         return INT_MIN;
     }
@@ -68,9 +71,9 @@ int deQueue(Queue* Q){
     }
 }
 
-void display(Queue *S)
+void displayQueue(Queue *S)
 {
-    if (isEmpty(S))
+    if (isEmptyQueue(S))
         printf("\nStack is Empty\n");
     else{
         for (int i = S->front; i <=S->rear; i++){
@@ -78,3 +81,5 @@ void display(Queue *S)
         }
     }
 }
+
+#endif
