@@ -1,8 +1,8 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include <limits.h>
-#include "../../Stack/StackDynamic.h" // Adjusted the include path for StackDynamic.h
-#include "../../queue/QueueDynamic.h" // Changed the include path
+#include "../../Stack/StackDynamic.h"
+#include "../../queue/QueueDynamic.h"
 
 void ReverseQueue(Queue* Q){
     SA* S = createStack();
