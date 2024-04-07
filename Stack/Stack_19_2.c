@@ -54,7 +54,6 @@ int pop(SA *S)
     {
         printf("\nStack Underflow\n");
         return INT_MIN;
-        ;
     }
     else
         return (S->array[S->top--]);
