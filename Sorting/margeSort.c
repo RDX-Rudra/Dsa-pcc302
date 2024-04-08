@@ -1,7 +1,7 @@
 #include<stdio.h>
 
 void merge(int arr[], int l, int mid, int r){
-    int n1 = mid +1-l;
+    int n1 = mid - l + 1;
     int n2 = r - mid;
     int left[n1];
     int right[n2];
@@ -9,30 +9,29 @@ void merge(int arr[], int l, int mid, int r){
         left[i] = arr[l + i];
     for (int j = 0; j < n2; j++)
         right[j] = arr[mid + 1 + j];
-    int i=0, j=0, k=l;
-    while(i<=mid && j<=r){
-        if(left[i] > right[j]){
-            arr[k] = right[j];
-            k++;
-            j++;
-        }
-        else {
+    int i = 0, j = 0, k = l;
+    while (i < n1 && j < n2) {
+        if (left[i] <= right[j]) {
             arr[k] = left[i];
             i++;
-            k++;
+        } else {
+            arr[k] = right[j];
+            j++;
         }
+        k++;
     }
-    while(i< mid){
-        arr[k]= left[i];
+    while (i < n1) {
+        arr[k] = left[i];
         i++;
         k++;
     }
-    while(j< mid){
-        arr[k]= right[j];
+    while (j < n2) {
+        arr[k] = right[j];
         j++;
         k++;
     }
 }
+
 
 
 void mergeSort(int arr[], int l, int r){
